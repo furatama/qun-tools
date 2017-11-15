@@ -68,8 +68,8 @@ app.post('/webhook/', function (req, res) {
 			    sendSecondC(sender)
 		    	continue
 		    }
-		    sendFirst(sender)
-		    //sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+		    // sendFirst(sender)
+		    sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 	    }
     }
     res.sendStatus(200)
