@@ -57,11 +57,20 @@ app.post('/webhook/', function (req, res) {
 			    sendFirst(sender)
 		    	continue
 		    }
-		    if (text === 'Generic') {
-			    sendGenericMessage(sender)
+		    if (text === 'Belajar FBTools') {
+			    sendSecondA(sender)
 		    	continue
 		    }
-		    sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+		    if (text === 'Pertanyaan FBTools') {
+			    sendSecondB(sender)
+		    	continue
+		    }
+		    if (text === 'Event Disekitar') {
+			    sendSecondC(sender)
+		    	continue
+		    }
+		    sendFirst(sender)
+		    //sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 	    }
     }
     res.sendStatus(200)
@@ -86,33 +95,29 @@ function sendTextMessage(sender, text) {
     })
 }
 
-function sendGenericMessage(sender) {
+function sendSecondC(sender) {
     let messageData = {
 	    "attachment": {
 		    "type": "template",
 		    "payload": {
 				"template_type": "generic",
 			    "elements": [{
-					"title": "First card",
-				    "subtitle": "Element #1 of an hscroll",
-				    "image_url": "http://messengerdemo.parseapp.com/img/rift.png",
+						"title": "DevC Bali Hackday",
+				    "subtitle": "12 November 2017, 09:00 - 15:00 @Aula Suastika, Fak Teknologi dan Informasi Unud",
+				    "image_url": "https://spi.unud.ac.id/wp-content/uploads/2013/02/100_3720.jpg",
 				    "buttons": [{
 					    "type": "web_url",
 					    "url": "https://www.messenger.com",
-					    "title": "web url"
-				    }, {
-					    "type": "postback",
-					    "title": "Postback",
-					    "payload": "Payload for first element in a generic bubble",
+					    "title": "Lihat Selengkapnya"
 				    }],
 			    }, {
-				    "title": "Second card",
-				    "subtitle": "Element #2 of an hscroll",
-				    "image_url": "http://messengerdemo.parseapp.com/img/gearvr.png",
+				    "title": "DevC Bali Run4Life",
+				    "subtitle": "31 November 2017, 07:00 - 10:00 @Lapangan Renon",
+				    "image_url": "https://st2.depositphotos.com/3431221/9276/v/950/depositphotos_92765878-stock-illustration-run-vector-runner-abstract-silhouette.jpg",
 				    "buttons": [{
-					    "type": "postback",
-					    "title": "Postback",
-					    "payload": "Payload for second element in a generic bubble",
+					    "type": "web_url",
+					    "url": "https://www.messenger.com",
+					    "title": "Lihat Selengkapnya"
 				    }],
 			    }]
 		    }
@@ -174,6 +179,74 @@ function sendFirst(sender) {
 	    if (error) {
 		    console.log('Error sending messages: ', error)
 	    } else if (response.body.error) {
+		    console.log('Error: ', response.body.error)
+	    }
+    })
+}
+
+function sendSecondA(sender) {
+    let messageData = {
+	    "attachment": {
+		    "type": "template",
+		    "payload": {
+					"template_type": "button",
+					"text": "Mau belajar apa?",
+			    "buttons":[
+			    	{
+			    		"type":"web_url",
+			    		"title":"Belajar React-Native",
+			    		"url":"https://facebook.github.io/react-native/docs/getting-started.html"
+			    	},
+			    	{
+			    		"type":"web_url",
+			    		"title":"Belajar React-JS",
+			    		"url":"https://reactjs.org/docs/hello-world.html"
+			    	},
+			    	{
+			    		"type":"web_url",
+			    		"title":"Belajar Messenger Bot",
+			    		"url":"https://messenger.fb.com/get-started"
+			    	},
+			    	{
+			    		"type":"web_url",
+			    		"title":"Belajar GraphQL",
+			    		"url":"http://graphql.org/learn/"
+			    	}
+			    ]
+		    }
+	    }
+    }
+    request({
+	    url: 'https://graph.facebook.com/v2.6/me/messages',
+	    qs: {access_token:token},
+	    method: 'POST',
+	    json: {
+		    recipient: {id:sender},
+		    message: messageData,
+	    }
+    }, function(error, response, body) {
+	    if (error) {
+		    console.log('Error sending messages: ', error)
+	    } else if (response.body.error) {
+		    console.log('Error: ', response.body.error)
+	    }
+    })
+}
+
+function sendSecondB(sender) {
+    let messageData = { text:"Untuk bertanya silahkan menggunakan format \"Tanya<spasi><pertanyaan>\"" }
+    request({
+	    url: 'https://graph.facebook.com/v2.6/me/messages',
+	    qs: {access_token:token},
+	    method: 'POST',
+		json: {
+		    recipient: {id:sender},
+			message: messageData,
+		}
+	}, function(error, response, body) {
+		if (error) {
+		    console.log('Error sending messages: ', error)
+		} else if (response.body.error) {
 		    console.log('Error: ', response.body.error)
 	    }
     })
