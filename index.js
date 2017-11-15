@@ -5,6 +5,8 @@ const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
 
+const token = "EAAFM7BdQJXUBADpP8pqNt2ZAJ5ZAweXCujk4XPCsTsar1MPnofRhkwwPFWQmcxDrhBbDRmY3K4ZAw2n6hFixQUZAA70QUjEXjqWl1S8SJ2YxfrpLxeEKuKEJK7ZCHmAxcVZCvn3jhZCgQoaWxDHZBtTGVPGuSGpZBISx6lkutVGxHOQZDZD"
+
 app.set('port', (process.env.PORT || 5000))
 
 // Process application/x-www-form-urlencoded
@@ -51,6 +53,10 @@ app.post('/webhook/', function (req, res) {
 	    let sender = event.sender.id
 	    if (event.message && event.message.text) {
 		    let text = event.message.text
+		    if (text === 'Mulai') {
+			    sendFirst(sender)
+		    	continue
+		    }
 		    if (text === 'Generic') {
 			    sendGenericMessage(sender)
 		    	continue
@@ -60,8 +66,6 @@ app.post('/webhook/', function (req, res) {
     }
     res.sendStatus(200)
 })
-
-const token = "EAAFM7BdQJXUBADpP8pqNt2ZAJ5ZAweXCujk4XPCsTsar1MPnofRhkwwPFWQmcxDrhBbDRmY3K4ZAw2n6hFixQUZAA70QUjEXjqWl1S8SJ2YxfrpLxeEKuKEJK7ZCHmAxcVZCvn3jhZCgQoaWxDHZBtTGVPGuSGpZBISx6lkutVGxHOQZDZD"
 
 function sendTextMessage(sender, text) {
     let messageData = { text:text }
@@ -111,6 +115,50 @@ function sendGenericMessage(sender) {
 					    "payload": "Payload for second element in a generic bubble",
 				    }],
 			    }]
+		    }
+	    }
+    }
+    request({
+	    url: 'https://graph.facebook.com/v2.6/me/messages',
+	    qs: {access_token:token},
+	    method: 'POST',
+	    json: {
+		    recipient: {id:sender},
+		    message: messageData,
+	    }
+    }, function(error, response, body) {
+	    if (error) {
+		    console.log('Error sending messages: ', error)
+	    } else if (response.body.error) {
+		    console.log('Error: ', response.body.error)
+	    }
+    })
+}
+
+function sendFirst(sender) {
+    let messageData = {
+	    "attachment": {
+		    "type": "template",
+		    "payload": {
+					"template_type": "button",
+					"text": "Apa yang bisa dibantu?",
+			    "buttons":[
+			    	{
+			    		"type":"postback",
+			    		"title":"Belajar FBTools",
+			    		"payload":"Pilihan Belajar FBTools"
+			    	},
+			    	{
+			    		"type":"postback",
+			    		"title":"Pertanyaan FBTools",
+			    		"payload":"Pilihan Pertanyaan FBTools"
+			    	},
+			    	{
+			    		"type":"postback",
+			    		"title":"Event Disekitar",
+			    		"payload":"Pilihan Event Disekitar"
+			    	}
+			    ]
 		    }
 	    }
     }
