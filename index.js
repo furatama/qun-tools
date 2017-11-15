@@ -55,7 +55,7 @@ app.post('/webhook/', function (req, res) {
 		    let text = event.message.text
 		    if (text === 'Belajar FBTools') {
 		    	// sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-			    sendFirst(sender)
+			    sendSecondA(sender)
 		    	continue
 		    }
 		    if (text === 'Pertanyaan FBTools') {
@@ -68,8 +68,8 @@ app.post('/webhook/', function (req, res) {
 			    sendSecondC(sender)
 		    	continue
 		    }
-		    // sendFirst(sender)
-		    sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+		    sendFirst(sender)
+		    // sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 	    }
     }
     res.sendStatus(200)
@@ -148,24 +148,63 @@ function sendFirst(sender) {
 					"text": "Apa yang bisa dibantu?",
 			    "buttons":[
 			    	{
-			    		"type":"web_url",
-			    		"title":"Belajar React-Native",
-			    		"url":"https://facebook.github.io/react-native/docs/getting-started.html"
+			    		"type":"postback",
+			    		"title":"Belajar FBTools",
+			    		"payload":"Belajar FBTools"
 			    	},
 			    	{
-			    		"type":"web_url",
-			    		"title":"Belajar React-JS",
-			    		"url":"https://reactjs.org/docs/hello-world.html"
+			    		"type":"postback",
+			    		"title":"Pertanyaan FBTools",
+			    		"payload":"Pertanyaan FBTools"
 			    	},
 			    	{
-			    		"type":"web_url",
-			    		"title":"Belajar Messenger Bot",
-			    		"url":"https://messenger.fb.com/get-started"
+			    		"type":"postback",
+			    		"title":"Event Disekitar",
+			    		"payload":"Event Disekitar"
+			    	}
+			    ]
+		    }
+	    }
+    }
+    request({
+	    url: 'https://graph.facebook.com/v2.6/me/messages',
+	    qs: {access_token:token},
+	    method: 'POST',
+	    json: {
+		    recipient: {id:sender},
+		    message: messageData,
+	    }
+    }, function(error, response, body) {
+	    if (error) {
+		    console.log('Error sending messages: ', error)
+	    } else if (response.body.error) {
+		    console.log('Error: ', response.body.error)
+	    }
+    })
+}
+
+function sendSecondA(sender) {
+    let messageData = {
+	    "attachment": {
+		    "type": "template",
+		    "payload": {
+					"template_type": "button",
+					"text": "Apa yang bisa dibantu?",
+			    "buttons":[
+			    	{
+			    		"type":"postback",
+			    		"title":"Belajar FBTools",
+			    		"payload":"Belajar FBTools"
 			    	},
 			    	{
-			    		"type":"web_url",
-			    		"title":"Belajar GraphQL",
-			    		"url":"http://graphql.org/learn/"
+			    		"type":"postback",
+			    		"title":"Pertanyaan FBTools",
+			    		"payload":"Pertanyaan FBTools"
+			    	},
+			    	{
+			    		"type":"postback",
+			    		"title":"Event Disekitar",
+			    		"payload":"Event Disekitar"
 			    	}
 			    ]
 		    }
