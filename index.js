@@ -55,7 +55,7 @@ app.post('/webhook/', function (req, res) {
 		    let text = event.message.text
 		    if (text === 'Belajar FBTools') {
 		    	// sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-			    sendSecondA(sender)
+			    sendFirst(sender)
 		    	continue
 		    }
 		    if (text === 'Pertanyaan FBTools') {
