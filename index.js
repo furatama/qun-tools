@@ -192,24 +192,24 @@ function sendSecondA(sender) {
 					"text": "Mau belajar apa?",
 			    "buttons":[
 			    	{
-			    		"type":"web_url",
-			    		"title":"Belajar React-Native",
-			    		"url":"https://facebook.github.io/react-native/docs/getting-started.html"
+			    		"type":"postback",
+			    		"title":"Belajar FBTools",
+			    		"payload":"Pilihan Belajar FBTools"
 			    	},
 			    	{
-			    		"type":"web_url",
-			    		"title":"Belajar React-JS",
-			    		"url":"https://reactjs.org/docs/hello-world.html"
+			    		"type":"postback",
+			    		"title":"Belajar FBTools",
+			    		"payload":"Pilihan Belajar FBTools"
 			    	},
 			    	{
-			    		"type":"web_url",
-			    		"title":"Belajar Messenger Bot",
-			    		"url":"https://messenger.fb.com/get-started"
+			    		"type":"postback",
+			    		"title":"Belajar FBTools",
+			    		"payload":"Pilihan Belajar FBTools"
 			    	},
 			    	{
-			    		"type":"web_url",
-			    		"title":"Belajar GraphQL",
-			    		"url":"http://graphql.org/learn/"
+			    		"type":"postback",
+			    		"title":"Belajar FBTools",
+			    		"payload":"Pilihan Belajar FBTools"
 			    	}
 			    ]
 		    }
