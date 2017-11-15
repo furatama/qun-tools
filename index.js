@@ -53,19 +53,18 @@ app.post('/webhook/', function (req, res) {
 	    let sender = event.sender.id
 	    if (event.message && event.message.text) {
 		    let text = event.message.text
-		    if (text === 'Mulai') {
-			    sendFirst(sender)
-		    	continue
-		    }
 		    if (text === 'Belajar FBTools') {
+		    	sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 			    sendSecondA(sender)
 		    	continue
 		    }
 		    if (text === 'Pertanyaan FBTools') {
+		    	sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 			    sendSecondB(sender)
 		    	continue
 		    }
 		    if (text === 'Event Disekitar') {
+		    	sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 			    sendSecondC(sender)
 		    	continue
 		    }
