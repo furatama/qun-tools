@@ -148,19 +148,24 @@ function sendFirst(sender) {
 					"text": "Apa yang bisa dibantu?",
 			    "buttons":[
 			    	{
-			    		"type":"postback",
-			    		"title":"Belajar FBTools",
-			    		"payload":"Pilihan Belajar FBTools"
+			    		"type":"web_url",
+			    		"title":"Belajar React-Native",
+			    		"url":"https://facebook.github.io/react-native/docs/getting-started.html"
 			    	},
 			    	{
-			    		"type":"postback",
-			    		"title":"Pertanyaan FBTools",
-			    		"payload":"Pilihan Pertanyaan FBTools"
+			    		"type":"web_url",
+			    		"title":"Belajar React-JS",
+			    		"url":"https://reactjs.org/docs/hello-world.html"
 			    	},
 			    	{
-			    		"type":"postback",
-			    		"title":"Event Disekitar",
-			    		"payload":"Pilihan Event Disekitar"
+			    		"type":"web_url",
+			    		"title":"Belajar Messenger Bot",
+			    		"url":"https://messenger.fb.com/get-started"
+			    	},
+			    	{
+			    		"type":"web_url",
+			    		"title":"Belajar GraphQL",
+			    		"url":"http://graphql.org/learn/"
 			    	}
 			    ]
 		    }
@@ -183,54 +188,54 @@ function sendFirst(sender) {
     })
 }
 
-function sendSecondA(sender) {
-    let messageData = {
-	    "attachment": {
-		    "type": "template",
-		    "payload": {
-					"template_type": "button",
-					"text": "Mau belajar apa?",
-			    "buttons":[
-			    	{
-			    		"type":"postback",
-			    		"title":"Belajar FBTools",
-			    		"payload":"Pilihan Belajar FBTools"
-			    	},
-			    	{
-			    		"type":"postback",
-			    		"title":"Belajar FBTools",
-			    		"payload":"Pilihan Belajar FBTools"
-			    	},
-			    	{
-			    		"type":"postback",
-			    		"title":"Belajar FBTools",
-			    		"payload":"Pilihan Belajar FBTools"
-			    	},
-			    	{
-			    		"type":"postback",
-			    		"title":"Belajar FBTools",
-			    		"payload":"Pilihan Belajar FBTools"
-			    	}
-			    ]
-		    }
-	    }
-    }
-    request({
-	    url: 'https://graph.facebook.com/v2.6/me/messages',
-	    qs: {access_token:token},
-	    method: 'POST',
-	    json: {
-		    recipient: {id:sender},
-		    message: messageData,
-	    }
-    }, function(error, response, body) {
-	    if (error) {
-		    console.log('Error sending messages: ', error)
-	    } else if (response.body.error) {
-		    console.log('Error: ', response.body.error)
-	    }
-    })
-}
+// function sendSecondA(sender) {
+//     let messageData = {
+// 	    "attachment": {
+// 		    "type": "template",
+// 		    "payload": {
+// 					"template_type": "button",
+// 					"text": "Mau belajar apa?",
+// 			    "buttons":[
+// 			    	{
+// 			    		"type":"web_url",
+// 			    		"title":"Belajar React-Native",
+// 			    		"url":"https://facebook.github.io/react-native/docs/getting-started.html"
+// 			    	},
+// 			    	{
+// 			    		"type":"web_url",
+// 			    		"title":"Belajar React-JS",
+// 			    		"url":"https://reactjs.org/docs/hello-world.html"
+// 			    	},
+// 			    	{
+// 			    		"type":"web_url",
+// 			    		"title":"Belajar Messenger Bot",
+// 			    		"url":"https://messenger.fb.com/get-started"
+// 			    	},
+// 			    	{
+// 			    		"type":"web_url",
+// 			    		"title":"Belajar GraphQL",
+// 			    		"url":"http://graphql.org/learn/"
+// 			    	}
+// 			    ]
+// 		    }
+// 	    }
+//     }
+//     request({
+// 	    url: 'https://graph.facebook.com/v2.6/me/messages',
+// 	    qs: {access_token:token},
+// 	    method: 'POST',
+// 	    json: {
+// 		    recipient: {id:sender},
+// 		    message: messageData,
+// 	    }
+//     }, function(error, response, body) {
+// 	    if (error) {
+// 		    console.log('Error sending messages: ', error)
+// 	    } else if (response.body.error) {
+// 		    console.log('Error: ', response.body.error)
+// 	    }
+//     })
+// }
 
 function sendSecondB(sender) {
     let messageData = { text:"Untuk bertanya silahkan menggunakan format \"Tanya<spasi><pertanyaan>\"" }
