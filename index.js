@@ -53,24 +53,24 @@ app.post('/webhook/', function (req, res) {
 	    let sender = event.sender.id
 	    if (event.message && event.message.text) {
 		    let text = event.message.text
-		    if (text === 'GraphQL') {
+		    if (text.toLowerCase() === 'graphql') {
 		    	// sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-			    sendApp(sender,"https://raw.githubusercontent.com/facebook/graphql/master/resources/GraphQL%20Logo.png",text)
+			    sendApp(sender,"https://raw.githubusercontent.com/facebook/graphql/master/resources/GraphQL%20Logo.png","GraphQL")
 		    	continue
 		    }
-		    if (text === 'Messenger Bot') {
+		    if (text.toLowerCase() === 'messenger bot') {
 		    	// sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-			    sendApp(sender,"http://www.stickpng.com/assets/images/580b57fcd9996e24bc43c526.png",text)
+			    sendApp(sender,"http://www.stickpng.com/assets/images/580b57fcd9996e24bc43c526.png","Messenger Bot")
 		    	continue
 		    }
-		    if (text === 'React Native') {
+		    if (text.toLowerCase() === 'react native') {
 		    	// sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-			    sendApp(sender,"https://www.pushwoosh.com/blog/wp-content/uploads/2016/07/react-logo.png",text)
+			    sendApp(sender,"https://www.pushwoosh.com/blog/wp-content/uploads/2016/07/react-logo.png","React Native")
 		    	continue
 		    }
-		    if (text === 'React JS') {
+		    if (text.toLowerCase() === 'react js') {
 		    	// sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-			    sendApp(sender,"https://www.pushwoosh.com/blog/wp-content/uploads/2016/07/react-logo.png",text)
+			    sendApp(sender,"https://www.pushwoosh.com/blog/wp-content/uploads/2016/07/react-logo.png","React JS")
 		    	continue
 		    }
 		    // sendFirst(sender)
