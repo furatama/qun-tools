@@ -108,7 +108,7 @@ function sendGraphQL(sender) {
 	        "elements":[
 	           {
 	            "title":"GraphQL",
-	            "image_url":"http://graphql.org/img/logo.svg",
+	            "image_url":"https://raw.githubusercontent.com/facebook/graphql/master/resources/GraphQL%20Logo.png",
 	            "buttons":[
 	              {
 	                "type":"postback",
