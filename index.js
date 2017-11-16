@@ -55,24 +55,24 @@ app.post('/webhook/', function (req, res) {
 		    let text = event.message.text
 		    if (text === 'GraphQL') {
 		    	// sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-			    sendGraphQL(sender)
+			    sendApp(sender,"https://raw.githubusercontent.com/facebook/graphql/master/resources/GraphQL%20Logo.png",text)
 		    	continue
 		    }
-		    // if (text === 'Messenger Bot') {
-		    // 	// sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-			   //  sendMessengerBot(sender)
-		    // 	continue
-		    // }
-		    // if (text === 'React Native') {
-		    // 	// sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-			   //  sendReactNative(sender)
-		    // 	continue
-		    // }
-		    // if (text === 'React JS') {
-		    // 	// sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-			   //  sendReactJS(sender)
-		    // 	continue
-		    // }
+		    if (text === 'Messenger Bot') {
+		    	// sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+			    sendApp(sender,"http://www.stickpng.com/assets/images/580b57fcd9996e24bc43c526.png",text)
+		    	continue
+		    }
+		    if (text === 'React Native') {
+		    	// sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+			    sendApp(sender,"https://www.pushwoosh.com/blog/wp-content/uploads/2016/07/react-logo.png",text)
+		    	continue
+		    }
+		    if (text === 'React JS') {
+		    	// sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+			    sendApp(sender,"https://www.pushwoosh.com/blog/wp-content/uploads/2016/07/react-logo.png",text)
+		    	continue
+		    }
 		    // sendFirst(sender)
 		    sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 	    }
@@ -99,7 +99,7 @@ function sendTextMessage(sender, text) {
     })
 }
 
-function sendGraphQL(sender) {
+function sendApp(sender, imgPath, name) {
     let messageData = {
 	    "attachment":{
 	      "type":"template",
@@ -107,8 +107,8 @@ function sendGraphQL(sender) {
 	        "template_type":"generic",
 	        "elements":[
 	           {
-	            "title":"GraphQL",
-	            "image_url":"https://raw.githubusercontent.com/facebook/graphql/master/resources/GraphQL%20Logo.png",
+	            "title":name,
+	            "image_url":imgPath,
 	            "buttons":[
 	              {
 	                "type":"postback",
