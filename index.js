@@ -112,15 +112,15 @@ function sendApp(sender, imgPath, name) {
 	            "buttons":[
 	              {
 	                "type":"postback",
-	                "title":"Send A Message",
+	                "title":"Video Tutorial",
 	                "payload":"MESSAGE_PAYLOAD"
 	              },{
 	                "type":"postback",
-	                "title":"Tutorials Collection",
+	                "title":"Web Tutorial",
 	                "payload":"TUTORIAL_PAYLOAD"
 	              },{
 	                "type":"postback",
-	                "title":"DevC Events Near You",
+	                "title":"Ask A Question",
 	                "payload":"EVENT_PAYLOAD"
 	              }              
 	            ]      
